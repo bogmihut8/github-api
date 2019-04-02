@@ -5,7 +5,11 @@ import Repo from './Repo'
 class Repositories extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { reposPage: 1 };
+  }
+  
+  handleDirectionClick = (state, type) => {
+    state.forUsername(state.username, 2);
   }
   
   render() {
@@ -38,8 +42,8 @@ class Repositories extends React.Component {
         <Consumer>
           {state => (
             <div>
-              <a href="javascript:;" onClick={() => state.forUsername(state.username, 1)}>Prev</a>
-              <a href="javascript:;" onClick={() => state.forUsername(state.username, 2)}>Next</a>
+              <a href="javascript:;" onClick={() => this.handleDirectionClick(state, 'prev')}>Prev</a>
+              <a href="javascript:;" onClick={() => this.handleDirectionClick(state, 'next')}>Next</a>
             </div>
            )
           }
