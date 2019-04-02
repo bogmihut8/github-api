@@ -12,15 +12,20 @@ class AppProvider extends React.Component {
       isLoading: false,
       repos: [],
       orgs: [],
-      forUsername: (value) => {
+      showHeader: false,
+      reposPage: 1,
+      orgsPage: 1,
+      forUsername: (value, page) => {
         this.setState({
           username: value,
           isLoading: true
         },
         async () => {
-            const response = await fetch('https://api.github.com/users/'+value+'/repos');
-            const json = await response.json();
-            this.setState({ repos: json, isLoading: false }, () => {this.props.history.push('/repositories')});
+            let data = await Promise.all([
+              fetch('https://api.github.com/users/'+value+'/repos?page='+page).then((response) => response.json()),
+              fetch('https://api.github.com/users/'+value+'/orgs?page='+page).then((response) => response.json())
+            ]);
+            this.setState({ repos: data[0], orgs: data[1], isLoading: false, showHeader: true }, () => {this.props.history.push('/repositories')});
           }
         );
       }
@@ -28,10 +33,10 @@ class AppProvider extends React.Component {
   }
 
   render() {
-    console.log(this.state)
-    const { username, isLoading, repos, orgs } = this.state;
+    console.log(this.state);
+    const { username, isLoading, repos, orgs, showHeader } = this.state;
     return (
-      <AppContext.Provider value={{ username, isLoading, repos, orgs, forUsername: this.state.forUsername }}>
+      <AppContext.Provider value={{ username, isLoading, repos, orgs, showHeader, forUsername: this.state.forUsername }}>
         {this.props.children}
       </AppContext.Provider>
     );

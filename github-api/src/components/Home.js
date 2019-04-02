@@ -4,7 +4,7 @@ import AppProvider, { Consumer } from './AppProvider'
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { value: ""};
   }
   
   render() {
@@ -17,8 +17,8 @@ class Home extends React.Component {
             <Consumer>
               {state => (
                 <div className="username-container">
-                  <input type="text" className="username" value={this.state.value} onChange={(e) => this.setState({value: e.target.value })} placeholder="Enter username..." />
-                  <input type="button" value="Search" onClick={() => state.forUsername(this.state.value)}/>
+                  <input type="text" className="username" value={this.state.value} onChange={(e) => this.setState({value: e.target.value })} placeholder="Enter new username..." />
+                  <input type="button" value="Search" onClick={() => state.forUsername(this.state.value, 1)}/>
                 </div>
               )}
             </Consumer>

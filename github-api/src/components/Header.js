@@ -7,9 +7,8 @@ const Header = () => (
   <header>
     <nav>
       <ul>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/repositories'>Repositories</Link></li>
-        <li><Link to='/organizations'>Organizations</Link></li>
+        <li className="btn"><Link to='/repositories'>Repositories</Link></li>
+        <li className="btn"><Link to='/organizations'>Organizations</Link></li>
       </ul>
     </nav>
   </header>

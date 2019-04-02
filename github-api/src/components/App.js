@@ -6,14 +6,16 @@ import AppProvider, { Consumer } from './AppProvider'
 
 const App = () => (
   <div className="App">
-    <Header />
-    
     <AppProvider>
+      <Consumer>
+        {state => (
+          <div className={state.showHeader ? 'header show' : 'header'}>
+            <Header />
+          </div>
+        )}
+      </Consumer>
       <Main />
     </AppProvider>
-    <p className="footer">
-      &copy; Copyright 2019
-    </p>
   </div>
 )
 
