@@ -9,7 +9,6 @@ class Home extends React.Component {
   
   render() {
     return (
-      <AppProvider>
         <div>
           <img className="icon" src="/github.png" alt="Github Icon" />
           <h1>Github API - repositories and organizations</h1>
@@ -30,7 +29,6 @@ class Home extends React.Component {
               )}
             </Consumer>
         </div>
-      </AppProvider>
     );
   }
 }

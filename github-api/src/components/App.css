@@ -112,6 +112,12 @@ html, body, #root, .App {
   text-decoration:underline;
 }
 
+.App main {
+  max-width: 34rem;
+    display: block;
+    margin: 0 auto;
+}
+
 .App main h1 {
   font-size: 30px;
 }
@@ -141,6 +147,33 @@ html, body, #root, .App {
   border:1px solid white;
   cursor: pointer;
   margin-left:20px;
+}
+
+.App main .repos-header {
+  text-align: left;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+  font-size:18px;
+}
+
+.App main .repos-header b {
+  font-weight:bold;
+}
+
+.App main .repos-header img {
+  width: 25px;
+    position: relative;
+    top: 5px;
+    margin: 0 6px 0 10px;
+}
+
+.App main .repos-header .github-link{
+  color: white;
+    float: right;
+    position: relative;
+    top: 12px;
+    font-size: 15px;
 }
 
 .App .footer {
