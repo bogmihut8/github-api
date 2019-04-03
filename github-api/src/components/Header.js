@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 // The Header creates links that can be used to navigate
 // between routes.
@@ -7,8 +7,8 @@ const Header = () => (
   <header>
     <nav>
       <ul>
-        <li className="btn"><Link to='/repositories'>Repositories</Link></li>
-        <li className="btn"><Link to='/organizations'>Organizations</Link></li>
+        <li className="btn"><NavLink activeClassName="active" to='/repositories'>Repositories</NavLink></li>
+        <li className="btn"><NavLink activeClassName="active" to='/organizations'>Organizations</NavLink></li>
       </ul>
     </nav>
   </header>

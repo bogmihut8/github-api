@@ -1,11 +1,16 @@
 import React from 'react'
 import AppProvider, { Consumer } from './AppProvider'
+import { Link } from 'react-router-dom'
 import Repo from './Repo'
 
 class Repositories extends React.Component {
   constructor(props) {
     super(props);
     this.state = { page: 1 };
+  }
+  
+  handleOnLoad = (state, e) => {
+    console.log("incarcat");
   }
   
   handleDirectionClick = (state, type) => {
@@ -20,6 +25,9 @@ class Repositories extends React.Component {
   render() {
     return (
       <div>
+        <div className="back">
+          <Link to='/'>&lsaquo;&nbsp;Back</Link>
+        </div>
         <Consumer>
           {state => (
             <div className="repos-header">

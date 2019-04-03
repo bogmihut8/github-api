@@ -1,25 +1,15 @@
 import React from 'react'
 import AppProvider, { Consumer } from './AppProvider'
+import { Link } from 'react-router-dom'
 import Org from './Org'
 
 class Organizations extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { page: 1 };
-  }
-  
-  handleDirectionClick = (state, type) => {
-    if(type === 'prev' && this.state.page > 1) {
-      this.setState({ page: this.state.page - 1}, () => state.forUsername(state.username, this.state.page))
-    }
-    else if(type === 'next' && state.repos.length === 30) {
-      this.setState({ page: this.state.page + 1}, () => state.forUsername(state.username, this.state.page))
-    }
-  }
-  
   render() {
     return (
       <div>
+        <div className="back">
+          <Link to='/'>&lsaquo;&nbsp;Back</Link>
+        </div>
         <Consumer>
           {state => (
             <div className="repos-header">
@@ -42,15 +32,6 @@ class Organizations extends React.Component {
             )}
             </ul>
           )}
-        </Consumer>
-        <Consumer>
-          {state => (
-            <div className="direction">
-              <a href="#" onClick={() => this.handleDirectionClick(state, 'prev')}>&laquo;&nbsp;Prev</a>
-              <a href="#" onClick={() => this.handleDirectionClick(state, 'next')}>Next&nbsp;&raquo;</a>
-            </div>
-           )
-          }
         </Consumer>
       </div>
     )
