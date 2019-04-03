@@ -20,8 +20,8 @@ class AppProvider extends React.Component {
         },
         async () => {
             let data = await Promise.all([
-              fetch('https://api.github.com/users/'+value+'/repos?access_token=db5da717160e60b104dbfc673a334feebc2acc5e&page='+page).then((response) => response.json()),
-              fetch('https://api.github.com/users/'+value+'/orgs?access_token=db5da717160e60b104dbfc673a334feebc2acc5e').then((response) => response.json())
+              fetch('https://api.github.com/users/'+value+'/repos?page='+page).then((response) => response.json()),
+              fetch('https://api.github.com/users/'+value+'/orgs').then((response) => response.json())
             ]);
             this.setState({ repos: data[0], orgs: data[1], isLoading: false, showHeader: true }, () => {this.props.history.push('/repositories')});
           }
