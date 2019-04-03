@@ -5,11 +5,16 @@ import Repo from './Repo'
 class Repositories extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { reposPage: 1 };
+    this.state = { page: 1 };
   }
   
   handleDirectionClick = (state, type) => {
-    state.forUsername(state.username, 2);
+    if(type === 'prev' && this.state.page > 1) {
+      this.setState({ page: this.state.page - 1}, () => state.forUsername(state.username, this.state.page))
+    }
+    else if(type === 'next' && state.repos.length === 30) {
+      this.setState({ page: this.state.page + 1}, () => state.forUsername(state.username, this.state.page))
+    }
   }
   
   render() {
@@ -41,9 +46,9 @@ class Repositories extends React.Component {
         </Consumer>
         <Consumer>
           {state => (
-            <div>
-              <a href="javascript:;" onClick={() => this.handleDirectionClick(state, 'prev')}>Prev</a>
-              <a href="javascript:;" onClick={() => this.handleDirectionClick(state, 'next')}>Next</a>
+            <div className="direction">
+              <a href="#" onClick={() => this.handleDirectionClick(state, 'prev')}>&laquo;&nbsp;Prev</a>
+              <a href="#" onClick={() => this.handleDirectionClick(state, 'next')}>Next&nbsp;&raquo;</a>
             </div>
            )
           }
