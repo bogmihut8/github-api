@@ -23,7 +23,16 @@ class AppProvider extends React.Component {
               fetch('https://api.github.com/users/'+value+'/repos?page='+page).then((response) => response.json()),
               fetch('https://api.github.com/users/'+value+'/orgs').then((response) => response.json())
             ]);
-            this.setState({ repos: data[0], orgs: data[1], isLoading: false, showHeader: true }, () => {this.props.history.push('/repositories')});
+            this.setState({ repos: data[0], orgs: data[1], isLoading: false, showHeader: true }, () => {
+              if(this.state.repos.message) {
+                alert("Something went wrong. The API rate limit was reached or the server is down.");
+                this.setState({ showHeader: false });
+              }
+              else {
+                this.props.history.push('/repositories')
+              }
+              
+            });
           }
         );
       }
@@ -31,7 +40,6 @@ class AppProvider extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const { username, isLoading, repos, orgs, showHeader } = this.state;
     return (
       <AppContext.Provider value={{ username, isLoading, repos, orgs, showHeader, forUsername: this.state.forUsername }}>
